@@ -12,7 +12,9 @@ WITH CTE AS(
     WHEN MONTH(TO_TIMESTAMP(STARTED_AT)) IN (3,4,5) THEN 'SPRING'
     WHEN MONTH(TO_TIMESTAMP(STARTED_AT)) IN (6,7,8) THEN 'SUMMER'
     ELSE 'AUTUMN'
-    END AS STATION_OF_YEAR
+    END AS STATION_OF_YEAR,
+
+    {{function1('STARTED_AT')}}
 
     FROM {{ source('demo', 'bike') }}
     WHERE STARTED_AT != 'started_at'
